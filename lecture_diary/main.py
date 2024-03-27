@@ -1,5 +1,5 @@
 import sys
-from module import read, add
+from module import Diary
 
 
 def main():
@@ -13,11 +13,13 @@ def main():
     """
     
     try:
+        diary = Diary()
         match sys.argv[1]:
             case '-r' | '--read':
-                print(read())
+                diary.read()
             case '-a' | '--add':
-                add()
+                #diary.add(sys.argv)
+                print(sys.argv)
             case '-h' | '--help':
                 help(main)
             case _:
@@ -25,6 +27,7 @@ def main():
     except IndexError:
         print("Usage: lecture_diary [OPTION]")
         print('(-h to help)')
+    
     
     
 if __name__ == '__main__':
