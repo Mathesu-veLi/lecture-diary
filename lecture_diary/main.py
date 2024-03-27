@@ -18,10 +18,11 @@ def main():
         
         match sys.argv[1]:
             case '-r' | '--read':
-                diary.read()
+                print(diary.read())
             case '-a' | '--add':
                 if len(sys.argv) < 6: raise IndexError()
-                print(sys.argv[2:])
+                
+                diary.add(sys.argv[2:])
             case '-h' | '--help':
                 help(main)
             case _:
