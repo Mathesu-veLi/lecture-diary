@@ -39,10 +39,7 @@ class Diary:
     def add(self, new_book: Book):
         new_book_df = pd.DataFrame(new_book)
     
-        try:
-            df = pd.concat([self.df, new_book_df])
-        except FileNotFoundError:
-            df = new_book_df
-        finally:
-            df.to_csv('diary.csv', index=False)
-            
+        df = pd.concat([self.read(), new_book_df])
+        df.to_csv('diary.csv', index=False)
+        
+        print('Book added')
