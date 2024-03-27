@@ -11,10 +11,10 @@ class Book:
         
     def __str__(self):
         book_obj = {
-            'title': self.title,
-            'author': self.author,
-            'start_date': self.start_date,
-            'end_date': self.end_date
+            'title': [self.title],
+            'author': [self.author],
+            'start_date': [self.start_date],
+            'end_date': [self.end_date]
         }
         
         return book_obj
@@ -23,7 +23,7 @@ class Diary:
     def __init__(self):
         self.df = None
         
-    def read(self):
+    def read(self) -> pd.DataFrame:
         if self.df is None:
             try:
                 self.df = pd.read_csv('diary.csv')
