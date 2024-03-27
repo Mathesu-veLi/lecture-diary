@@ -3,15 +3,15 @@ import pandas as pd
 #TODO: Add a import of diary's
 
 class Book:
-    def __init__(self, name, author, start_date, end_date):
-        self.name = name
-        self.author = author
-        self.start_date = start_date
-        self.end_date = end_date
+    def __init__(self, book_data):
+        self.title = book_data[0]
+        self.author = book_data[1]
+        self.start_date = book_data[2]
+        self.end_date = book_data[3]
         
     def __str__(self):
         book_obj = {
-            'name': self.name,
+            'title': self.title,
             'author': self.author,
             'start_date': self.start_date,
             'end_date': self.end_date
