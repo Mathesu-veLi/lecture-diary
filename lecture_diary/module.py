@@ -21,9 +21,12 @@ class Book:
 
 class Diary:
     def __init__(self):
-        self.df = pd.read_csv('diary.csv')
+        self.df = None
         
     def read(self):
+        if self.df is None:
+            self.df = pd.read_csv('diary.csv')
+            
         return self.df
     
     def add(self, new_book: Book):
