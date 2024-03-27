@@ -14,6 +14,8 @@ def main():
     
     try:
         diary = Diary()
+        if len(sys.argv) > 6: raise IndexError()
+        
         match sys.argv[1]:
             case '-r' | '--read':
                 diary.read()
@@ -23,7 +25,7 @@ def main():
             case '-h' | '--help':
                 help(main)
             case _:
-                print(sys.argv[1] + 'is not a valid option')
+                print(sys.argv[1] + ' is not a valid option')
     except IndexError:
         print("Usage: lecture_diary [OPTION]")
         print('(-h to help)')
