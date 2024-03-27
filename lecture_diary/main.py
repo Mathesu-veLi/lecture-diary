@@ -27,7 +27,13 @@ def main():
     except IndexError:
         print("Usage: lecture_diary [OPTION]")
         print('(-h to help)')
-    
+    except FileNotFoundError:
+        print("File diary.csv not found")
+        creates = True if input('Creates a diary? [Y/N]: ').capitalize()[0] == 'Y' else False
+        
+        if creates:
+            diary = Diary()
+            diary.create()
     
     
 if __name__ == '__main__':
