@@ -20,13 +20,14 @@ def main():
             case '-r' | '--read':
                 diary.read()
             case '-a' | '--add':
-                #diary.add(sys.argv)
-                print(sys.argv)
+                if len(sys.argv) < 6: raise IndexError()
+                print(sys.argv[2:])
             case '-h' | '--help':
                 help(main)
             case _:
                 print(sys.argv[1] + ' is not a valid option')
     except IndexError:
+        print("Incorrect usage!")
         print("Usage: lecture_diary [OPTION]")
         print('(-h to help)')
     except FileNotFoundError:
