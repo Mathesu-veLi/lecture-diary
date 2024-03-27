@@ -29,6 +29,9 @@ class Diary:
             
         return self.df
     
+    def create(self) -> None:
+        pd.DataFrame().to_csv('diary.csv', index=False)
+    
     def add(self, new_book: Book):
         new_book_df = pd.DataFrame(new_book)
     
