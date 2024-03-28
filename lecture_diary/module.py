@@ -63,8 +63,19 @@ class Diary:
         
         file_exists = os.path.exists('diary.csv')
         if not file_exists:
-            raise FileNotFoundError()
+            raise FileNotFoundError()   
         
         df.to_csv('diary.csv', mode='a', header=False, index=False)
         
         print('Book added')
+    
+    def edit(self, book_index: int, column_to_edit: str, new_book_data: str):
+        if column_to_edit not in ['title', 'author', 'start_date', 'end_date']:
+            print('Invalid column to edit. Hint: Use title, author, start_date, or end_date')
+            return
+        
+        df = pd.read_csv('diary.csv')
+        df.at[int(book_index), column_to_edit] = new_book_data
+        df.to_csv('diary.csv', index=False)
+        
+        print('Book edited')
