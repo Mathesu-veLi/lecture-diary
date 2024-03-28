@@ -7,9 +7,16 @@ def main():
     Usage: lecture_diary [OPTION]
 
     OPTIONS:
-        -a, --add <name> <author> <start_date> <end_date>   Add a new book to the diary
-        -h, --help                                          Show this message and exit
+        -a, --add <title> <author> <start_date> <end_date>  Add a new book to the diary
+        -e, --edit <index> [EDIT OPTIONS]                   Edit the existing book
         -r, --read                                          Read the diary
+        -h, --help                                          Show this message and exit
+    
+    EDIT OPTIONS:
+        -t, --title <title>             Edit title
+        -a, --author <author>           Edit author
+        -sd, --start_date <start_date>  Edit start date
+        -ed, --end_date <end_date>      Edit end date
     """
     
     try:
@@ -29,6 +36,12 @@ def main():
                     raise IndexError()
 
                 diary.add(sys.argv[2:])
+                
+            case '-e' | '--edit':
+                if len(sys.argv) < 5: 
+                    raise IndexError()
+
+                diary.edit(sys.argv[2], sys.argv[3], sys.argv[4])
                 
             case '-h' | '--help':
                 help(main)
