@@ -24,15 +24,11 @@ class Diary:
         self.df = None
         
     def read(self) -> pd.DataFrame:
-        if self.df is not None:
-            return self.df
-        
-        try:
+        if self.df is None:
             self.df = pd.read_csv('diary.csv')
-        except pd.errors.EmptyDataError:
-            return 'No data in diary.csv'
             
-    
+        return self.df
+        
     def create(self) -> None:
         df = pd.DataFrame(columns=['title', 'author', 'start_date', 'end_date'])
         df.to_csv('diary.csv', index=False)
