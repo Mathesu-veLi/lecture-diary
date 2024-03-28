@@ -18,7 +18,7 @@ def main():
         
         match sys.argv[1]:
             case '-r' | '--read':
-                print(diary.read())
+                print(diary.read() if len(diary.read().index) > 0 else 'Diary is empty...')
             case '-a' | '--add':
                 if len(sys.argv) < 6: raise IndexError()
                 
