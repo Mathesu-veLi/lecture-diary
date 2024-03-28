@@ -10,7 +10,7 @@ class Book:
         self.start_date = self.date_is_valid(book_data[2])
         self.end_date = self.date_is_valid(book_data[3])
         
-    def __call__(self):
+    def to_dict(self):
         book_obj = {
             'title': [self.title],
             'author': [self.author],
@@ -59,7 +59,7 @@ class Diary:
             print('Invalid date. Hint: Use YYYY-MM-DD')
             return
         
-        df = pd.DataFrame(new_book())
+        df = pd.DataFrame(new_book.to_dict())
         
         file_exists = os.path.exists('diary.csv')
         if not file_exists:
