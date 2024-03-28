@@ -24,17 +24,18 @@ class Diary:
         self.df = None
         
     def read(self) -> pd.DataFrame:
-        if self.df is None:
-            try:
-                self.df = pd.read_csv('diary.csv')
-            except pd.errors.EmptyDataError:
-                print('No data in diary.csv')
-                
-        return self.df
+        if self.df is not None:
+            return self.df
+        
+        try:
+            self.df = pd.read_csv('diary.csv')
+        except pd.errors.EmptyDataError:
+            return 'No data in diary.csv'
             
     
     def create(self) -> None:
         pd.DataFrame().to_csv('diary.csv', index=False)
+        
     
     def add(self, new_book: Book):
         new_book_df = pd.DataFrame(new_book)
