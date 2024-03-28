@@ -34,7 +34,8 @@ class Diary:
             
     
     def create(self) -> None:
-        pd.DataFrame().to_csv('diary.csv', index=False)
+        df = pd.DataFrame(columns=['title', 'author', 'start_date', 'end_date'])
+        df.to_csv('diary.csv', index=False)
         
     
     def add(self, new_book: Book):
