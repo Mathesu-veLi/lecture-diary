@@ -14,23 +14,33 @@ def main():
     
     try:
         diary = Diary()
+        
         if len(sys.argv) > 6: raise IndexError()
         
         match sys.argv[1]:
             case '-r' | '--read':
-                print(diary.read() if len(diary.read().index) > 0 else 'Diary is empty...')
-            case '-a' | '--add':
-                if len(sys.argv) < 6: raise IndexError()
+                if not len(diary.read().index):
+                    return print('Diary is empty...')
                 
+                print(diary.read())
+                
+            case '-a' | '--add':
+                if len(sys.argv) < 6: 
+                    raise IndexError()
+
                 diary.add(sys.argv[2:])
+                
             case '-h' | '--help':
                 help(main)
+                
             case _:
                 print(sys.argv[1] + ' is not a valid option')
+                
     except IndexError:
         print("Incorrect usage!")
         print("Usage: lecture_diary [OPTION]")
         print('(-h to help)')
+        
     except FileNotFoundError:
         print("File diary.csv not found")
         creates = True if input('Creates a diary? [Y/N]: ').capitalize()[0] == 'Y' else False

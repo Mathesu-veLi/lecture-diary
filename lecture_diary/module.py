@@ -47,6 +47,7 @@ class Diary:
             
         return self.df
         
+        
     def create(self) -> None:
         df = pd.DataFrame(columns=['title', 'author', 'start_date', 'end_date'])
         df.to_csv('diary.csv', index=False)
