@@ -1,4 +1,5 @@
 import pandas as pd
+import os
     
 #TODO: Add a import of diary's
 
@@ -9,7 +10,7 @@ class Book:
         self.start_date = book_data[2]
         self.end_date = book_data[3]
         
-    def __str__(self):
+    def __call__(self):
         book_obj = {
             'title': [self.title],
             'author': [self.author],
@@ -35,9 +36,13 @@ class Diary:
         
     
     def add(self, new_book: Book):
-        new_book_df = pd.DataFrame(new_book)
-    
-        df = pd.concat([self.read(), new_book_df])
-        df.to_csv('diary.csv', index=False)
+        new_book = Book(new_book)()
+        df = pd.DataFrame(new_book)
+        
+        file_exists = os.path.exists('diary.csv')
+        if not file_exists:
+            raise FileNotFoundError()
+        
+        df.to_csv('diary.csv', mode='a', header=False, index=False)
         
         print('Book added')
