@@ -74,6 +74,12 @@ class Diary:
             print('Invalid column to edit. Hint: Use title, author, start_date, or end_date')
             return
         
+        if column_to_edit in ['start_date', 'end_date']:
+            new_book_data = Book().date_is_valid(self, new_book_data)
+            if not new_book_data:
+                print('Invalid date. Hint: Use YYYY-MM-DD')
+                return
+        
         df = pd.read_csv('diary.csv')
         df.at[int(book_index), column_to_edit] = new_book_data
         df.to_csv('diary.csv', index=False)
